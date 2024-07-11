@@ -1,0 +1,67 @@
+﻿@model List<Dining>
+
+ @{
+    ViewData["Title"] = "Index";
+    Layout = "_Dashboard";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Experiences</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <span>All Dinings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h3>All Experiences Data</h3>
+    <br />
+    <!-- search section -->
+    <form asp-action="Index" asp-controller="Dining" method="get">
+        <div class="row input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search" />
+            <input type="submit" value="Search" class="btn btn-primary" style="background-color: #DFA974; border:none" />
+        </div>
+    </form>
+    <br />
+    <a class="btn btn-success" style="background-color: #DFA974; border:none" href="/Dining/New">New</a>
+
+    <br />
+    <br />
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Duration</th>
+            <th>Time of Day</th>
+            <th>Details</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td><img src="/Images/Dining/@item.Images" style="width:100px" /></td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.Duration</td>
+                <td>@item.TimeOfDay</td>  
+                <td><a href="/Dining/DiningDetails?id=@item.Id">Details</a></td>
+                <td><a class=" btn btn-success" style="background-color: #DFA974; border:none" href="/Dining/Edit/@item.Id">Edit</a></td>
+                <td><a class="btn btn-danger" href="/Dining/Delete/@item.Id">Delete</a></td>
+            </tr>
+        }
+    </table>
+</div>

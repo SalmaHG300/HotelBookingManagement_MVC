@@ -1,0 +1,117 @@
+﻿@model HotelRoomType
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Dashboard";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Room Details</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="" asp-controller="HotelRoomType" asp-action="RoomTypes">Rooms</a>
+                    <span>Edit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- Room Details Section Begin -->
+
+<div class="container">
+
+<h4>Edit Room Type</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <form method="post" action="/HotelRoomType/SaveEdit/@Model.Id" enctype="multipart/form-data" >
+            <div asp-validation-summary="All" class="text-danger"></div>  
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Images" class="control-label"></label>
+                    <img id="imagePreview" style="width:400px;height:400px" src="/images/RoomType/@Model.Images" alt="Image Preview" />
+@*                 <img src="/Images/RoomType/@Model.Images" alt="">
+                    *@                
+                    <input Name="FileImages" type="file" class="form form-control" style="border:none; outline:none;" onchange="previewImage(event)" />
+                <span asp-validation-for="Images" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BedCount" class="control-label"></label>
+                <input asp-for="BedCount" class="form-control" />
+                <span asp-validation-for="BedCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BathCount" class="control-label"></label>
+                <input asp-for="BathCount" class="form-control" />
+                <span asp-validation-for="BathCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxGuestCount" class="control-label"></label>
+                <input asp-for="MaxGuestCount" class="form-control" />
+                <span asp-validation-for="MaxGuestCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Area" class="control-label"></label>
+                <input asp-for="Area" class="form-control" />
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BedType" class="control-label"></label>
+                <input asp-for="BedType" class="form-control" />
+                <span asp-validation-for="BedType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="View" class="control-label"></label>
+                <input asp-for="View" class="form-control" />
+                <span asp-validation-for="View" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Decor" class="control-label"></label>
+                <input asp-for="Decor" class="form-control" />
+                <span asp-validation-for="Decor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UniqueFeatures" class="control-label"></label>
+                <input asp-for="UniqueFeatures" class="form-control" />
+                <span asp-validation-for="UniqueFeatures" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" style="background-color: #DFA974; border:none" /> |
+                    <a asp-action="Index" asp-controller="HotelRoomType" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<br />
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            var output = document.getElementById('imagePreview');
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

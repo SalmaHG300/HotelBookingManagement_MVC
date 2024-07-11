@@ -1,0 +1,119 @@
+﻿@model List<Cart>
+
+<div>
+    <table>
+        @if (Model == null || !Model.Any())
+        {
+            <tr>
+                <td class="nav-item">No items in cart</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var cart in Model)
+            {
+                <tr>
+                    <th colspan="5" class="nav-item">Cart ID: @cart.Id</th>
+                </tr>
+
+                <!-- Loop through BookingDining -->
+                @if (cart.BookingDinings != null && cart.BookingDinings.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="nav-item"><strong>Dining Bookings:</strong></td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th colspan="2">Price</th>
+                    </tr>
+                    @foreach (var dining in cart.BookingDinings)
+                    {
+                        <tr>
+                            <td><img src="/Images/Dining/@dining.Dining.Images" alt="Dining image" /></td>
+                            <td>@dining.Dining.Name</td>
+                            <td>@dining.Date</td>
+                            <td colspan="2">@dining.Price</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="nav-subitem">No Dining Bookings</td>
+                    </tr>
+                }
+
+                <!-- Loop through BookingRoom -->
+                @if (cart.BookingRooms != null && cart.BookingRooms.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="nav-item"><strong>Room Bookings:</strong></td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <th>Room Type</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th>Price</th>
+                    </tr>
+                    foreach (var room in cart.BookingRooms)
+                    {
+                        <tr>
+                            <td>@room.HotelRoom.HotelRoomType.Name</td>
+                            <td><img src="/Images/RoomType/@room.HotelRoom.HotelRoomType.Images" /></td>
+                            <td>@room.CheckInDate</td>
+                            <td>@room.CheckOutDate</td>
+                            <td>@room.TotalPrice</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="nav-subitem">No Room Bookings</td>
+                    </tr>
+                }
+
+                <!-- Loop through BookingExperience -->
+                @if (cart.BookingExperiences != null && cart.BookingExperiences.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="nav-item"><strong>Experience Bookings:</strong></td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th colspan="2">Price</th>
+                    </tr>
+                    foreach (var experience in cart.BookingExperiences)
+                    {
+                        <tr>
+                            <td><img src="/Images/Experience/@experience.Experience.CoverImage" alt="Experience image" /></td>
+                            <td>@experience.Experience.Name</td>
+                            <td>@experience.Date</td>
+                            <td colspan="2">@experience.Price</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="nav-subitem">No Experience Bookings</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td colspan="5" class="nav-item">Shipping Price: @cart.ShippingPrice</td>
+                </tr>
+            }
+        }
+    </table>
+
+    <div class="header-configure-area">
+        <a href="./Cart/ConfirmCart" class="bk-btn">Confirm Cart</a>
+    </div>
+
+</div>

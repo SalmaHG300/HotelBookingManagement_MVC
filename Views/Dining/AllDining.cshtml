@@ -1,0 +1,63 @@
+﻿ @model IEnumerable<Dining>
+
+@{
+    ViewData["Title"] = "All Dinings";
+    Layout = "_Index";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Dinings</h2>
+                    <div class="bt-option">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Our Dining Options</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Experiences grid -->
+        <div style="margin:100px" class="row" id="experiences-container">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 experience-item">
+                    <div class="blog-item set-bg" data-setbg="/Images/Dining/@item.Images">
+                        <div class="bi-text">
+                            <span class="b-tag">@item.Price EGP</span>
+                            <h4><a href="/Dining/Details?id=@item.Id">@item.Name</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i>@item.Duration</div>
+                            <div class="b-time"><i class="icon_clock_alt"></i>@item.TimeOfDay</div>
+                        </div>
+                    </div>
+        </div>
+            }
+       </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const filterButtons = document.querySelectorAll('[id^="filter-"]');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const typeId = this.getAttribute('data-type');
+                filterExperiences(typeId);
+            });
+        });
+
+        function filterExperiences(typeId) {
+            const experiences = document.querySelectorAll('.experience-item');
+            experiences.forEach(experience => {
+                if (experience.getAttribute('data-type') === typeId || typeId === "all") {
+                    experience.style.display = 'block';
+                } else {
+                    experience.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>

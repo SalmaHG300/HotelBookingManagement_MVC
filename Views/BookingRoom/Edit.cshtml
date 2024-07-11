@@ -1,0 +1,108 @@
+﻿@model BookingRoomOfferRoomTypeVM
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Index";
+    SelectList offerList = new SelectList(ViewBag.OfferList, "Id", "OfferName");
+    SelectList floorList = new SelectList(ViewBag.FloorList, "Id", "FloorNum");
+    SelectList roomTypeList = new SelectList(ViewBag.RoomTypeList, "Id", "Name");
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Edit Dining Booking</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="" asp-controller="Cart" asp-action="GetAllCart">All Bookings</a>
+                    <span>Edit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="container">
+    <h3>Edit Dining Booking</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="/BookingRoom/SaveEdit/@Model.Id" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="HotelRoomTypeId" class="control-label">Room Type</label>
+                    <br />
+                    <select asp-for="HotelRoomTypeId" asp-items="roomTypeList" class="form form-control">
+                    </select>
+                    <span asp-validation-for="HotelRoomTypeId" class="text-danger"></span>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label asp-for="HotelFloorId" class="control-label">Floor Number</label>
+                    <br />
+                    <select asp-for="HotelFloorId" asp-items="floorList" class="form form-control">
+                    </select>
+                    <span asp-validation-for="HotelFloorId" class="text-danger"></span>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label asp-for="OfferId" class="control-label">Offer Meal</label>
+                    <br />
+                    <select asp-for="OfferId" asp-items=" offerList " class="form form-control">
+                    </select>
+                    <span asp-validation-for="OfferId" class="text-danger"></span>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label asp-for="CheckInDate" class="control-label"></label>
+                    <input asp-for="CheckInDate" class="form-control" />
+                    <span asp-validation-for="CheckInDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CheckOutDate" class="control-label"></label>
+                    <input asp-for="CheckOutDate" class="form-control" />
+                    <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumAdults" class="control-label"></label>
+                    <input asp-for="NumAdults" class="form-control" />
+                    <span asp-validation-for="NumAdults" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumChildren" class="control-label"></label>
+                    <input asp-for="NumChildren" class="form-control" />
+                    <span asp-validation-for="NumChildren" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumOfRooms" class="control-label"></label>
+                    <input asp-for="NumOfRooms" class="form-control" />
+                    <span asp-validation-for="NumOfRooms" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SpecialRequest" class="control-label"></label>
+                    <input asp-for="SpecialRequest" class="form-control" />
+                    <span asp-validation-for="SpecialRequest" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" style="background-color: #DFA974; border:none" /> |
+                    <a asp-action="GetAllCart" asp-controller="Cart">View All Bookings</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetAllCart" asp-controller="Cart">Back to Cart</a>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

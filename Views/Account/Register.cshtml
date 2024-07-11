@@ -1,0 +1,84 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "register";
+    Layout = "_Index";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="breadcrumb-text">
+				<h2>Registration form</h2>
+				<div class="bt-option">
+					<a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+					<span>Registration</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br />
+
+	<div class="wrapper" style="background-image: url('/images/bg-registration-form-1.jpg');">
+		<div class="innerlogin">
+
+		<form asp-action="register" asp-controller="Account" method="post" enctype="multipart/form-data">
+			<div asp-validation-summary="All" class="text-danger"></div> 
+			<h3>Registration Form</h3>
+				<div class="form-groupL">
+					<input asp-for="Fname" placeholder="First Name" class="form-control">
+				<span asp-validation-for="Fname" class="text-danger"></span>
+			    	<input asp-for="Lname" placeholder="Last Name" class="form-control">
+				<span asp-validation-for="Lname" class="text-danger"></span>
+				</div>
+			<br />
+				<div class="form-wrapper">
+				<input asp-for="Username" placeholder="Username" class="form-control">
+					<i class="zmdi zmdi-account"></i>
+				<span asp-validation-for="Username" class="text-danger"></span>
+				</div>
+				<br />
+				<div class="form-wrapper">
+				<input asp-for="Email" placeholder="Email Address" class="form-control">
+					<i class="zmdi zmdi-email"></i>
+				<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+		     	<br />
+				<div class="form-wrapper">
+					<input asp-for="Phone" placeholder="Phone Number" class="form-control">
+					<i class="zmdi zmdi-phone"></i>
+				<span asp-validation-for="Phone" class="text-danger"></span>
+				</div>
+			    <br />
+				<div class="form-wrapper">
+					<input asp-for="Address" placeholder="Address" class="form-control">
+					<i class="zmdi zmdi-location"></i>
+					<span asp-validation-for="Address" class="text-danger"></span>
+				</div>
+				<br />
+				<div class="form-wrapper">
+				<input asp-for="Password" placeholder="Password" class="form-control">
+					<i class="zmdi zmdi-lock"></i>
+				<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+		     	<br />
+				<div class="form-wrapper">
+				<input asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control">
+					<i class="zmdi zmdi-lock"></i>
+				<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+				</div>
+
+			<button style="background-color: #DFA974; border:none; margin-top:20px; margin-bottom:15px;">
+					Register
+					<i class="zmdi zmdi-arrow-right"></i>
+				</button>
+			<span>
+				Already have an account?
+				<a class="nav-link" asp-action="Login" asp-controller="Account" style="display:inline">Login</a>
+			</span>
+			</form>
+
+		</div>
+	</div>
+<br />

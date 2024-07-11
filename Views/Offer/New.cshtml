@@ -1,0 +1,66 @@
+﻿@model Offer
+@{
+    ViewData["Title"] = "New";
+    Layout = "_Dashboard";
+}
+<!-- Breadcrumb Section Begin -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Create New Room Type</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="" asp-controller="Offer" asp-action="Index">Offer table</a>
+                    <span>Create New</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<section class="room-details-section spad">
+
+    <div class="container">
+        <h3>Room Form</h3>
+        <br />
+        <form asp-action="SaveNew" asp-controller="Offer" method="post" enctype="multipart/form-data">
+            <div>
+                <label asp-for="OfferName"> </label>
+                <input asp-for="OfferName" class="form form-control" />
+            </div>
+            <div>
+                <label asp-for="OfferImage"> </label>
+                <img id="imagePreview" style="width:400px;height:400px" src="/images/RoomType/@Model.OfferImage" alt="Image Preview" />
+                <input Name="FileImages" type="file" class="form form-control" style="border:none; outline:none;" onchange="previewImage(event)" />
+            </div>
+            <br />
+            <div>
+                <label asp-for="OfferPrice"> </label>
+                <input asp-for="OfferPrice" class="form form-control" />
+            </div>
+            <div>
+                <label asp-for="OfferDescription"> </label>
+                <input asp-for="OfferDescription" class="form form-control" />
+            </div>           
+            <br />
+            <input type="submit" value="Create" class="btn btn-success" style="background-color: #DFA974; border:none" />|
+            <a asp-action="Index" asp-controller="Offer">Back to List</a>
+        </form>
+
+    </div>
+    </div>
+</section>
+<br />
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            var output = document.getElementById('imagePreview');
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

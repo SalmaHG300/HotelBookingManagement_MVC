@@ -1,0 +1,145 @@
+﻿@model HotelManagement_MVC.Models.Cart
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Dashboard";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Edit Cart</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="" asp-controller="Cart" asp-action="GetAllCart">All Carts</a>
+                    <span>Edit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container">
+    <h4>Edit Cart</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="/Cart/SaveEdit/@Model.Id" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="paymentMethod" class="control-label">Payment Method</label>
+                    <select asp-for="paymentMethod" class="form-control" asp-items="ViewBag.PaymentMethods"></select>
+                    <span asp-validation-for="paymentMethod" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShippingPrice" class="control-label">Shipping Price</label>
+                    <input asp-for="ShippingPrice" class="form-control" />
+                    <span asp-validation-for="ShippingPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="paymentStatus" class="control-label">Payment Status</label>
+                    <select asp-for="paymentStatus" class="form-control" asp-items="ViewBag.PaymentStatuses"></select>
+                    <span asp-validation-for="paymentStatus" class="text-danger"></span>
+                </div>
+
+                <!-- Booking Dinings -->
+                @if (Model.BookingDinings != null && Model.BookingDinings.Any())
+                {
+                    <h5>Booking Dinings</h5>
+                    <table class="table table-bordered table-hover my-5">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Delete</th>
+                        </tr>
+                        @foreach (var dining in Model.BookingDinings)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <img class="img-fluid" style="width: 200px;" src="/Images/Dining/@dining.Dining.Images" alt="Dining image" />
+                                </td>
+                                <td>@dining.Dining.Name</td>
+                                <td>@dining.Date</td>
+                                <td>@dining.Price</td>
+                                <td>
+                                    <a href="/BookingDining/Delete?id=@dining.Id" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+                <!-- Booking Rooms -->
+                @if (Model.BookingRooms != null && Model.BookingRooms.Any())
+                {
+                    <h5>Booking Rooms</h5>
+                    <table class="table table-bordered table-hover my-5">
+                        <tr>
+                            <th>Image</th>
+                            <th>Room Type</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Price</th>
+                            <th>Delete</th>
+                        </tr>
+                        @foreach (var room in Model.BookingRooms)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <img class="img-fluid" style="width: 200px;" src="/Images/RoomType/@room.HotelRoom.HotelRoomType.Images" alt="Room image" />
+                                </td>
+                                <td>@room.HotelRoom.HotelRoomType.Name</td>
+                                <td>@room.CheckInDate</td>
+                                <td>@room.CheckOutDate</td>
+                                <td>@room.TotalPrice</td>
+                                <td>
+                                    <a href="/BookingRoom/Delete?id=@room.Id" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+                <!-- Booking Experiences -->
+                @if (Model.BookingExperiences != null && Model.BookingExperiences.Any())
+                {
+                    <h5>Booking Experiences</h5>
+                    <table class="table table-bordered table-hover my-5">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Delete</th>
+                        </tr>
+                        @foreach (var experience in Model.BookingExperiences)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <img class="img-fluid" style="width: 200px;" src="/Images/Experience/@experience.Experience.CoverImage" alt="Experience image" />
+                                </td>
+                                <td>@experience.Experience.Name</td>
+                                <td>@experience.Date</td>
+                                <td>@experience.Price</td>
+                                <td>
+                                    <a href="/BookingExperience/Delete?id=@experience.Id" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" style="background-color: #DFA974; border:none" /> |
+                    <a asp-action="GetAllCart" asp-controller="Cart">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

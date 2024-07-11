@@ -1,0 +1,59 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Index";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="breadcrumb-text">
+				<h2>Login</h2>
+				<div class="bt-option">
+					<a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+					<span>Login</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br />
+
+<div class="wrapper" style="background-image: url('/images/log.jpg');">
+	<div class="innerlogin">
+		<form asp-action="Login" asp-controller="Account" method="post" enctype="multipart/form-data">
+			<div asp-validation-summary="All" class="text-danger"></div> 
+			<h3>Login</h3>
+			<div class="form-wrapper">
+				<input asp-for="Username" placeholder="Username" class="form-control">
+				<i class="zmdi zmdi-account"></i>
+				<span asp-validation-for="Username" class="text-danger"></span>
+			</div>
+			<br />
+			<div class="form-wrapper">
+				<input asp-for="Password" placeholder="Password" class="form-control">
+				<i class="zmdi zmdi-lock"></i>
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+			<br />
+			<div>
+				<label class="form-check-label">
+					<input  asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+				</label>
+			</div>
+			<button style="background-color: #DFA974; border:none; margin-top:20px; margin-bottom:15px;">
+				Login
+				<i class="zmdi zmdi-arrow-right"></i>
+			</button>
+			<p><a asp-action="ForgetPassword">Forget Password</a></p>
+			<span>Don't have an account?
+				<a class="nav-link" asp-area="" asp-controller="Account" asp-action="register" style="display:inline">Register now</a>
+			</span>
+		
+		</form>
+	
+	</div>
+</div>
+<br />
+

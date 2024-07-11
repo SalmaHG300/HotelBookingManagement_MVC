@@ -1,0 +1,51 @@
+﻿@model List<Offer>
+
+@{
+    ViewData["Title"] = "Offers";
+    Layout = "_Index";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Room types</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <span>Meals Offers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<!-- Rooms Section Begin -->
+
+<section class="rooms-section spad">
+    <div class="container">
+        <form asp-action="RoomTypes" asp-controller="HotelRoomType" method="get">
+            <div class="row input-group">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Search" />
+                <input type="submit" value="Search" class="btn btn-primary" style="background-color: #DFA974; border:none" />
+            </div>
+        </form>
+        <br />
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="/Images/offer/@item.OfferImage" style="height:300px; width:300px;">
+                        <div class="ri-text">
+                            <h4>@item.OfferName</h4>
+                            <h3>@item.OfferPrice LE <span> /Pernight</span></h3>                          
+                            <a class="primary-btn" href="/Offer/Details?id=@item.Id">For more details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

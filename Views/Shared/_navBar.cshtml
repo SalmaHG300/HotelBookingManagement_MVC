@@ -1,0 +1,97 @@
+﻿<header class="header-section">
+    <div class="top-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="tn-left">
+                        @if (User.Identity.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Welcome @User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tn-right">
+                        <div class="top-social">
+                            <a href="https://www.tripadvisor.com/" ><i class="fa fa-tripadvisor"></i></a>
+                            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://x.com/?mx=2"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                        </div>
+                        <a asp-controller= "Home" asp-action="BookingNow"  class="bk-btn">Booking Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="/img/logo1.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="nav-menu">
+                        <nav class="mainmenu">
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="HotelRoomType" asp-action="RoomTypes">Rooms</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Experience" asp-action="Experiences">Experience</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Dining" asp-action="GetAll">Dining</a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">AboutUs</a>
+                                </li>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                    <li>
+                                        <a asp-controller ="HotelRoomType" asp-action="Index">
+                                            DashBoard</a>
+                                        <ul class="dropdown">
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="HotelRoomType" asp-action="Index">RoomType</a></li>
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Experience" asp-action="Index">Experience</a></li>      
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Offer" asp-action="Index">Offer</a></li>
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Dining" asp-action="Index">Dining</a></li>
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="Index">User</a></li>
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Calendar">Events</a></li>
+                                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="GetAllCartAdmin">Cart</a></li>
+
+                                        </ul>
+                                    </li>
+                                    }
+                                   
+                            </ul>
+                        </nav>
+              @*           <div class="nav-right search-switch">
+                            <i class="icon_search"></i>
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

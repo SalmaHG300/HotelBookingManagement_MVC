@@ -1,0 +1,142 @@
+﻿@model HotelRoomType
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Index";
+}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Room Details</h2>
+                    <div class="bt-option">
+                        <a  asp-area="" asp-controller="Home" asp-action="Index">Home</a>                    
+                         <a asp-area="" asp-controller="HotelRoomType" asp-action="RoomTypes">Rooms</a>
+                        <span>Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+<!-- Room Details Section Begin -->
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="room-details-item">
+                    <img src="/Images/RoomType/@Model.Images" alt="">
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h3>@Model.Name</h3>
+                            <div class="rdt-right">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>                                  
+                                    </div>
+                                @if (User.Identity.IsAuthenticated == true)
+                                {
+                                    <div>
+                                    <a asp-action="BookingRoom" asp-controller="BookingRoom">Booking Now</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <a asp-action="Login" asp-controller="Account">Login to Book the Room</a>
+                                    </div>
+                                }
+
+                        </div>
+                        <br />
+                        <br />
+                    <div>
+                        <h2>@Model.Price LE<span> /Pernight</span></h2>
+                            </div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Size: </td>
+                                    <td> @Model.Area m2</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Capacity: </td>
+                                    <td> @Model.MaxGuestCount</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Number of Bath: </td>
+                                    <td> @Model.BathCount</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Bed Type: </td>
+                                    <td> @Model.BedType.</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Number of Beds: </td>
+                                    <td> @Model.BedCount</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">UniqueFeatures: </td>
+                                    <td>@Model.UniqueFeatures.</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Description: </td>
+                                    <td>  @Model.Description</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="rd-reviews">
+                    <h4>Reviews</h4>
+                    <div class="review-item">
+                        <div class="ri-pic">
+                            <img src="/img/room/avatar/avatar-1.jpg" alt="">
+                        </div>
+                        <div class="ri-text">
+                            <span>27 Aug 2023</span>
+                            <div class="rating">
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star-half_alt"></i>
+                            </div>
+                            <h5>Brandon Kelley</h5>
+                            <p>
+                               I recently stayed at Hotel booking and had a fantastic experience booking a room. 
+                               The process was smooth, and the room exceeded my expectations. The online booking system was user-friendly, 
+                               allowing me to select my preferred dates, room type, and any additional amenities with ease.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="ri-pic">
+                            <img src="/img/room/avatar/avatar-2.jpg" alt="">
+                        </div>
+                        <div class="ri-text">
+                            <span>27 Jan 2024</span>
+                            <div class="rating">
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star-half_alt"></i>
+                            </div>
+                            <h5>Brandon Kelley</h5>
+                            <p>
+                                    I recently had the pleasure of booking a hotel room at Hotel booking,
+                                    and I must say, it was an exceptional experience. 
+                                    From the moment I initiated the booking process to the end of my stay, everything was seamless and enjoyable.
+                            </p>
+                        </div>
+                    </div>
+                </div>               
+            </div>          
+        </div>
+    </div>
+</section>
+<!-- Room Details Section End -->

@@ -1,0 +1,82 @@
+﻿@model Offer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Dashboard";
+}
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="breadcrumb-text">
+            <h2>Edit</h2>
+            <div class="bt-option">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-area="" asp-controller="Offer" asp-action="Index">Offer table</a>
+                <span>Edit</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br />
+<!-- Room Details Section Begin -->
+
+<div class="container">
+    <h4>Edit Offer</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="/Offer/SaveEdit/@Model.Id" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+      @*       <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="OfferName" class="control-label"></label>
+                <input asp-for="OfferName" class="form-control" />
+                <span asp-validation-for="OfferName" class="text-danger"></span>
+            </div>
+
+                <div class="form-group">
+                    <label asp-for="OfferImage" class="control-label"></label>
+                    <img id="imagePreview" style="width:400px;height:400px" src="/images/Offer/@Model.OfferImage" alt="Image Preview" />
+                    <input Name="FileImages" type="file" class="form form-control" style="border:none; outline:none;" onchange="previewImage(event)" />
+                    <span asp-validation-for="OfferImage" class="text-danger"></span>
+                </div>
+
+            <div class="form-group">
+                <label asp-for="OfferDescription" class="control-label"></label>
+                <input asp-for="OfferDescription" class="form-control" />
+                <span asp-validation-for="OfferDescription" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="OfferPrice" class="control-label"></label>
+                <input asp-for="OfferPrice" class="form-control" />
+                <span asp-validation-for="OfferPrice" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" style="background-color: #DFA974; border:none" />|
+                    <a asp-action="Index" asp-controller="Offer">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            var output = document.getElementById('imagePreview');
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

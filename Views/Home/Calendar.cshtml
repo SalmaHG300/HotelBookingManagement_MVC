@@ -1,0 +1,46 @@
+﻿@model AllBookingEventsViewModel
+
+@{
+    ViewData["Title"] = "Calendar";
+    Layout = "_Dashboard";
+    var eventsJson = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Events);
+}
+
+<h2>Calendar</h2>
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="calendar2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var events = @Html.Raw(eventsJson);
+            $('#calendar2').fullCalendar({
+                events: events,
+                editable: true,
+                droppable: true,
+                eventLimit: true,
+                selectable: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                drop: function(date) { /* your drop handler */ },
+                select: function (start, end, allDay) { /* your select handler */ },
+                eventClick: function(calEvent, jsEvent, view) { /* your event click handler */ }
+            });
+        });
+    </script>
+}

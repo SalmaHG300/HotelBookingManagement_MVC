@@ -1,0 +1,169 @@
+﻿@model IEnumerable<HotelRoomType>
+
+@{
+    ViewData["Title"] = "Room Type";
+    Layout = "_Dashboard";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPages;
+    }
+}
+
+<!-- Breadcrumb Section Begin -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Room types</h2>
+                    <div class="bt-option">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Rooms Types</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="container">
+     <h3>Room Type Data</h3>
+     <br />
+<form asp-action="Index" asp-controller="HotelRoomType" method="get">
+    <div class="row input-group">
+        <input type="text" name="search" id="search" class="form-control" placeholder="Search" />
+            <input type="submit" value="Search" class="btn btn-primary" style="background-color: #DFA974; border:none" />
+    </div>
+</form>
+
+<br />
+    <a class="btn btn-success" style="background-color: #DFA974; border:none" href="/HotelRoomType/New">New</a>
+<br />
+<br />
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Bed Count</th>
+        <th>Bath Count</th>
+        <th>Max.Guest/Room</th>
+        <th>Price</th>
+        <th>Area</th>
+        <th>View</th>
+        <th>Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td><img src="/Images/RoomType/@item.Images" style="width:100px" /></td>
+            <td>@item.BedCount</td>
+            <td>@item.BathCount</td>
+            <td>@item.MaxGuestCount</td>
+            <td>@item.Price</td>
+            <td>@item.Area</td>
+            <td>@item.View</td>
+            <td><a href="/HotelRoomType/Details?id=@item.Id">Details</a></td>
+            <td><a class="btn btn-success" style="background-color: #DFA974; border:none" href="/HotelRoomType/Edit?id=@item.Id">Edit</a></td>
+            <td><a class="btn btn-danger" href="/HotelRoomType/Delete/@item.Id">Delete</a></td>
+        </tr>
+    }
+  </table>
+    <div class="container">
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-end">
+                @if (pager.CurrentPages > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="HotelRoomType" asp-action="Index" asp-route-pg="1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="HotelRoomType" asp-action="Index" asp-route-pg="@(pager.CurrentPages-1)">Previous</a>
+                    </li>
+                }
+                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class="page-item @(pge==pager.CurrentPages?"active":"")">
+                        <a class="page-link" asp-controller="HotelRoomType" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+                @if (pager.CurrentPages < pager.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="HotelRoomType" asp-action="Index" asp-route-pg="@(pager.CurrentPages+1)">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="HotelRoomType" asp-action="Index" asp-route-pg="@(pager.TotalPages+1)">Last</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+
+</div >
+
+<br />
+
+ 
+
+@* <!-- Breadcrumb Section Begin -->
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Our Rooms</h2>
+                    <div class="bt-option">
+                        <a href="./home.html">Home</a>
+                        <span>Rooms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Rooms Section Begin -->
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="room-item">
+                    <img src="img/room/room-1.jpg" alt="">
+                    <div class="ri-text">
+                        <h4>Premium King Room</h4>
+                        <h3>159$<span>/Pernight</span></h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Size:</td>
+                                    <td>30 ft</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Capacity:</td>
+                                    <td>Max persion 3</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Bed:</td>
+                                    <td>King Beds</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Services:</td>
+                                    <td>Wifi, Television, Bathroom,...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="#" class="primary-btn">More Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@

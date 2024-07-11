@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "BookingNow";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>BookingNow</h2>
+                    <div class="bt-option">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <span>All Booking Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Blog Section Begin -->
+<section class="blog-section blog-page spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/Images/RoomType/SuperiorRoom.jpg">
+                    <div >
+                        <h2><a asp-controller="HotelRoomType" asp-action="RoomTypes">RoomTypes</a></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/Images/Experience/4.jpg">
+                    <div>
+                        <h2 ><a asp-controller="Experience" asp-action="Experiences">Experience</a></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/Images/Dining/MAN_2010_original.jpg">
+                    <div>
+                        <h2 ><a asp-controller="Dining" asp-action="GetAll">Dining</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+@* @section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.set-bg').each(function () {
+                var bg = $(this).data('setbg');
+                $(this).css('background-image', 'url(' + bg + ')');
+            });
+        });
+    </script>
+} *@

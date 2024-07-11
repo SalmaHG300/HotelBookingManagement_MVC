@@ -1,0 +1,63 @@
+﻿@model Offer
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Index";
+};
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Room Details</h2>
+                    <div class="bt-option">
+                        <a  asp-area="" asp-controller="Home" asp-action="Index">Home</a>                    
+                         <a asp-area="" asp-controller="Offer" asp-action="Offer">Meals Offers</a>
+                        <span>Offer Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+<!-- Room Details Section Begin -->
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="room-details-item">
+                    <img src="/Images/Offer/@Model.OfferImage" alt="">
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h3>@Model.OfferName</h3>
+                            <div class="rdt-right">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                                <a href="#">Booking Now</a>
+                            </div>
+                        </div>
+                        <h2>@Model.OfferPrice LE<span> /Pernight</span></h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Type : </td>
+                                    <td> @Model.OfferName</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Description: </td>
+                                    <td> @Model.OfferDescription.</td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

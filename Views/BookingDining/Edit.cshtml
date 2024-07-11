@@ -1,0 +1,89 @@
+﻿@model BookingDiningEditVM
+
+@{
+    ViewData["Title"] = "Edit Dining Booking";
+    Layout = "_Dashboard";
+    var today = DateTime.Today.ToString("MM-dd-yyyy");
+    SelectList diningList = new SelectList(ViewBag.DiningList, "Id", "Name");
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="breadcrumb-text">
+                <h2>Edit Dining Booking</h2>
+                <div class="bt-option">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="" asp-controller="Cart" asp-action="GetAllCart">All Bookings</a>
+                    <span>Edit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="container">
+    <h4>Edit Dining Booking</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="/BookingDining/SaveEdit/@Model.Id" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Date">Choose date:</label>
+                    <input asp-for="Date" class="form-control" id="date-in"  />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="NumAdults" class="control-label">Guests:</label>
+                    <select class="form-control" asp-for="NumAdults">
+                        <option value="1">1 Adult</option>
+                        <option value="2">2 Adults</option>
+                        <option value="3">3 Adults</option>
+                        <option value="4">4 Adults</option>
+                        <option value="5">5 Adults</option>
+                        <option value="6">6 Adults</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DiningId" class="control-label">Dining Options</label>
+                    <select asp-for="DiningId" class="form-control" asp-items="diningList"></select>
+                    <span asp-validation-for="DiningId" class="text-danger"></span>
+                </div>
+@*                 <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div> *@
+                <div class="form-group">
+                    <label asp-for="SpecialRequest" class="control-label"></label>
+                    <input asp-for="SpecialRequest" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" style="background-color: #DFA974; border:none" /> |
+                    <a asp-action="GetAllCart" asp-controller="Cart">View All Bookings</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var dataURL = reader.result;
+            var output = document.getElementById('imagePreview');
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

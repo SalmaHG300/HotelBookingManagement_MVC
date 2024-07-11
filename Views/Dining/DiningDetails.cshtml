@@ -1,0 +1,140 @@
+﻿@model BookingDiningVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Index";
+    var today = DateTime.Today.ToString("MM-dd-yyyy");
+}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Dining</h2>
+                    <div class="bt-option">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-area="" asp-controller="Dining" asp-action="GetAll">All Dinings</a>
+                        <span>Dining Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+<!-- Breadcrumb Section End -->
+<!-- Blog Details Section Begin -->
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="room-details-item">
+                   <img src="/Images/Dining/@Model.Images" alt="">
+                     <div class="rd-text">
+                        <div class="rd-title">
+                            <h3>@Model.Name</h3>
+
+                        </div>
+                        <h2>@Model.Price<span>/PerPerson</span></h2>
+
+                        <p class="f-para">
+                            <h3 style="margin-bottom:10px; color:#DFA974;">Description</h3>
+                            @Model.Description
+                        </p>
+                        <p class="f-para">
+                            <h3 style="margin-bottom:10px; color:#DFA974;">Duration</h3>
+                            @Model.Duration
+                        </p>
+                        <p class="f-para">
+                            <h3 style="margin-bottom:10px; color:#DFA974;">Time Of Day</h3>
+                            @Model.TimeOfDay
+                        </p>
+                        <br />
+                        <a class="btn btn-success" style="background-color: #DFA974; border:none" href="/Dining/GetAll">Back to all Dinings</a>
+                        <br/>
+                        <br />
+
+                    </div>
+                    <div class="rd-reviews">
+                        <h4>Reviews</h4>
+                        <div class="review-item">
+                            <div class="ri-pic">
+                                <img src="/img/room/avatar/avatar-1.jpg" alt="">
+                            </div>
+                            <div class="ri-text">
+                                <span>27 Aug 2023</span>
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                                <h5>Brandon Kelley</h5>
+                                <p>
+                                    I recently stayed at Hotel booking and had a fantastic experience booking a room.
+                                    The process was smooth, and the room exceeded my expectations. The online booking system was user-friendly,
+                                    allowing me to select my preferred dates, room type, and any additional amenities with ease.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="ri-pic">
+                                <img src="/img/room/avatar/avatar-2.jpg" alt="">
+                            </div>
+                            <div class="ri-text">
+                                <span>27 Jan 2024</span>
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                                <h5>Brandon Kelley</h5>
+                                <p>
+                                    I recently had the pleasure of booking a hotel room at Hotel booking,
+                                    and I must say, it was an exceptional experience.
+                                    From the moment I initiated the booking process to the end of my stay, everything was seamless and enjoyable.
+                                </p>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="room-booking">
+                    <h3>Your Reservation</h3>
+                    <form asp-action="SaveNew" asp-controller="BookingDining" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="@Model.DiningId" />
+                        <div class="Date">
+                            <label asp-for="Date">Choose date:</label>
+                            <input asp-for="Date" onselect="Date" class="date-input" id="date-in" value="@today">
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <div class="select-option">
+                            <label for="NumAdults">Guests:</label>
+                            <select asp-for="NumAdults">
+                                <option value="1">1 Adult</option>
+                                <option selected value="2">2 Adults</option>
+                                <option value="3">3 Adults</option>
+                                <option value="4">4 Adults</option>
+                                <option value="5">5 Adults</option>
+                                <option value="6">6 Adults</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SpecialRequest" class="control-label">Special Request:</label>
+                            <input asp-for="SpecialRequest" class="form-control" />
+                        </div>
+                        <button type="submit">Book Your Dining</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Details Section End -->
+
